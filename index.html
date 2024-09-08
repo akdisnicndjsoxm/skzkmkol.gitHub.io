@@ -69,6 +69,10 @@
         let direction = { x: 0, y: 0 };
         let score = 0;
 
+        // 加载苹果图片
+        const appleImage = new Image();
+        appleImage.src = 'apple.png'; // 请替换为实际的苹果图片URL
+
         function draw() {
             ctx.fillStyle = '#000';
             ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -76,8 +80,8 @@
             ctx.fillStyle = '#0f0';
             snake.forEach(segment => ctx.fillRect(segment.x * gridSize, segment.y * gridSize, gridSize, gridSize));
 
-            ctx.fillStyle = '#f00';
-            ctx.fillRect(food.x * gridSize, food.y * gridSize, gridSize, gridSize);
+            // 绘制苹果
+            ctx.drawImage(appleImage, food.x * gridSize, food.y * gridSize, gridSize, gridSize);
 
             ctx.fillStyle = '#fff';
             ctx.fillText('得分: ' + score, 10, 20);
