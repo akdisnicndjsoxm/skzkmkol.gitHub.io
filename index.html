@@ -14,14 +14,38 @@
             background-color: #000;
             color: #fff;
             font-family: Arial, sans-serif;
+            flex-direction: column;
         }
         canvas {
             border: 1px solid #fff;
+        }
+        .controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+        .controls button {
+            width: 50px;
+            height: 50px;
+            margin: 5px;
+            font-size: 20px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
         }
     </style>
 </head>
 <body>
     <canvas id="gameCanvas" width="400" height="400"></canvas>
+    <div class="controls">
+        <button id="upBtn">↑</button>
+        <button id="leftBtn">←</button>
+        <button id="downBtn">↓</button>
+        <button id="rightBtn">→</button>
+    </div>
 
     <script>
         const canvas = document.getElementById('gameCanvas');
@@ -81,6 +105,27 @@
                     if (direction.x === 0) direction = { x: 1, y: 0 };
                     break;
             }
+        });
+
+        const upBtn = document.getElementById('upBtn');
+        const downBtn = document.getElementById('downBtn');
+        const leftBtn = document.getElementById('leftBtn');
+        const rightBtn = document.getElementById('rightBtn');
+
+        upBtn.addEventListener('click', () => {
+            if (direction.y === 0) direction = { x: 0, y: -1 };
+        });
+
+        downBtn.addEventListener('click', () => {
+            if (direction.y === 0) direction = { x: 0, y: 1 };
+        });
+
+        leftBtn.addEventListener('click', () => {
+            if (direction.x === 0) direction = { x: -1, y: 0 };
+        });
+
+        rightBtn.addEventListener('click', () => {
+            if (direction.x === 0) direction = { x: 1, y: 0 };
         });
 
         const gameLoop = setInterval(() => {
