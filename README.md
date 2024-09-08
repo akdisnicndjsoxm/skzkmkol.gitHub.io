@@ -1,2 +1,1 @@
-# skzkmkol.gitHub.io
-#贪吃蛇
+# 贪吃蛇 Snakes
