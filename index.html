@@ -87,6 +87,7 @@
             if (head.x < 0 || head.x >= tileCount || head.y < 0 || head.y >= tileCount || snake.slice(1).some(segment => segment.x === head.x && segment.y === head.y)) {
                 clearInterval(gameLoop);
                 alert('游戏结束！得分: ' + score);
+                location.reload(); // 游戏结束后自动刷新页面
             }
         }
 
