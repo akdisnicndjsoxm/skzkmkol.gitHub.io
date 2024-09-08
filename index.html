@@ -18,9 +18,10 @@
         }
         canvas {
             border: 1px solid #fff;
+            display: none;
         }
         .controls {
-            display: flex;
+            display: none;
             justify-content: center;
             align-items: center;
             margin-top: 20px;
@@ -42,9 +43,27 @@
             justify-content: center;
             align-items: center;
         }
+        .start-screen {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .start-screen button {
+            padding: 10px 20px;
+            font-size: 20px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
+    <div class="start-screen">
+        <h1>贪吃蛇游戏</h1>
+        <button id="startBtn">开始游戏</button>
+    </div>
     <canvas id="gameCanvas" width="400" height="400"></canvas>
     <div class="controls">
         <div class="row">
@@ -68,10 +87,11 @@
         let food = { x: 15, y: 15 };
         let direction = { x: 0, y: 0 };
         let score = 0;
+        let gameLoop;
 
         // 加载苹果图片
         const appleImage = new Image();
-        appleImage.src = 'apple.png'; // 请替换为实际的苹果图片URL
+        appleImage.src = 'apple.png'; // 请确保图片文件在同一目录下
 
         function draw() {
             ctx.fillStyle = '#000';
@@ -143,10 +163,16 @@
             if (direction.x === 0) direction = { x: 1, y: 0 };
         });
 
-        const gameLoop = setInterval(() => {
-            update();
-            draw();
-        }, 100);
+        const startBtn = document.getElementById('startBtn');
+        startBtn.addEventListener('click', () => {
+            document.querySelector('.start-screen').style.display = 'none';
+            canvas.style.display = 'block';
+            document.querySelector('.controls').style.display = 'flex';
+            gameLoop = setInterval(() => {
+                update();
+                draw();
+            }, 100);
+        });
     </script>
 </body>
 </html>
